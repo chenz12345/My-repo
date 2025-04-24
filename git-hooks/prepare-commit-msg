@@ -1,0 +1,10 @@
+#!/bin/bash
+
+USERNAME=$(whoami)
+COMMIT_MSG_FILE=$1
+
+
+if ! grep -q "\[$USERNAME\]" "$COMMIT_MSG_FILE"; then
+  sed -i "1s/^/[$USERNAME] /" "$COMMIT_MSG_FILE"
+fi
+

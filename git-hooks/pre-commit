@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo " Running pre-commit "
+
+for file in $(git diff --cached --name-only); do
+    if [[ "$file" == *.log || "$file" == *.tmp ]]; then
+        echo " Commit blocked: - $file"
+        exit 1
+fi
+done
+
+
+for file in $(git diff --cached --name-only | grep '\.sh$'); do
+    if grep -q "# DEBUG:" "$file"; then
+        echo " Commit blocked: נמצא # DEBUG: בתוך $file"
+        exit 1
+fi
+done
+
+echo "Pre-commit check passed "
+  

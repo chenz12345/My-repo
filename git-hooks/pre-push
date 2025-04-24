@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "Running pre-push hook"
+
+
+large_files=$(git ls-files | xargs -I{} find {} -type f -size +1M)
+
+if [[ -n "$large_files" ]]; then
+ echo "Push blocked: נמצאו קבצים גדולים מ-1MB:"
+ echo "$large_files"
+  exit 1
+fi
+
+echo "Pre-push check passed"
+exit 0
+
