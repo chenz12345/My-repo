@@ -1,2 +1,2 @@
-def my_function():
-print("This will fail")
+def example_function():
+    print("Hello World!")

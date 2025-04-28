@@ -1,3 +1,4 @@
 def test_addition():
-    assert 1 + 1 == 2
-
+    """Test the addition of two numbers."""
+    result = 1 + 1
+    assert result == 2

@@ -1,0 +1,6 @@
+#!/bin/sh
+MSG=$(cat "$1")
+if ! echo "$MSG" | grep -qE '^(feat|fix|docs|style|refactor|test|chore)\(.+\): .+'; then
+  echo " Commit  have to follow 'type: description'"
+  exit 1
+fi
