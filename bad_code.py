@@ -1,2 +1,2 @@
 def bad_function():
-print("This is wrong!")
+    print("This is right!")
