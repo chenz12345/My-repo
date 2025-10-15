@@ -1,0 +1,42 @@
+# Display name of workflow
+name: Basic Workflow
+
+# Controls when the action will run.
+# Workflow runs when manually triggered using the UI or API.
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: "Your name"
+        # Default value if no value is explicitly provided
+        default: "Guest"
+        # Input has to be provided for the workflow to run
+        required: true
+        # Input type (string, choice, boolean)
+        type: string
+      city:
+        description: "City you want to visit"
+        required: true
+        type: choice
+        options:
+          - Tel Aviv
+          - Haifa
+          - Jerusalem
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called 'greet'
+  greet:
+    # Display name for the job
+    name: "Greetings, Program!"
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Runs commands using the runners shell and gets context from the github object
+      - name: Send greeting
+        run: |
+          echo "Hello ${{ github.event.inputs.name }}! Welcome to Israel!"
+          echo "We hope you enjoy your visit to ${{ github.event.inputs.city }}."
